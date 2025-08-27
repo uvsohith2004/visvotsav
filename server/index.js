@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(
   cors({
-    origin: ["https://visvotsav.vercel.app", "http://localhost:5173"],
+    origin: ["visvotsav-teal.vercel.app"],
     credentials: true,
   })
 );
