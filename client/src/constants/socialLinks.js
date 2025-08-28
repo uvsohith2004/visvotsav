@@ -15,10 +15,6 @@ const socialLinks = [
     icon:Twitter,
     url:'https://x.com/pbrvitsofficial'
 },
-{
-    id: linkedin,
-    icon: linkedin,
-    url: 
-}
+
 ];
 export default socialLinks;
