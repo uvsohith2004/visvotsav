@@ -10,7 +10,7 @@ const homeData =  {
       eventMonth:"SEP",
       eventDate: '14-15 ',
       suffix:'th',
-      downloadSize:"3 MB",
+      downloadSize:"Poster",
       eventAddress: 'UdayaGiri Road, Kavali, Nellore district'
     }
 

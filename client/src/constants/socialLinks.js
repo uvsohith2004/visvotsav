@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
+import { Facebook, Instagram, Twitter, linkedin } from "lucide-react";
 const socialLinks = [
 { 
     id:'facebook',
@@ -15,5 +15,10 @@ const socialLinks = [
     icon:Twitter,
     url:'https://x.com/pbrvitsofficial'
 },
+{
+    id: linkedin,
+    icon: linkedin,
+    url: 
+}
 ];
 export default socialLinks;

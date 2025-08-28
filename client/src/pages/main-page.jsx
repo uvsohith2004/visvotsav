@@ -215,7 +215,7 @@ const MainPage = () => {
             </div>
 
             <div className="flex justify-center items-center space-x-4">
-              <span>Share:</span>
+              <span>Follow Us:</span>
               {socialLinks.map((link) => {
                 const IconComponent = link.icon;
                 return (
