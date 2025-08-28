@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Twitter, linkedin } from "lucide-react";
+import { Facebook, Instagram, Twitter, Linkedin } from "lucide-react";
 const socialLinks = [
 { 
     id:'facebook',
@@ -15,9 +15,9 @@ const socialLinks = [
     icon:Twitter,
     url:'https://x.com/pbrvitsofficial/'
 },
-{ 
+{
     id:'linkedin',
-    icon:linkedin,
+    icon:Linkedin,
     url:'https://www.linkedin.com/company/pbrvits-official/'
 },
 ];

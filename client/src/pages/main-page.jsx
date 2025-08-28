@@ -220,7 +220,7 @@ const MainPage = () => {
                 const IconComponent = link.icon;
                 return (
                    <a
-                    key={link.name}
+                    key={link.id}
                    href={link.url}
                    target="_blank"
                    rel="noopener noreferrer"
