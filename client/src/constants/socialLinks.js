@@ -13,8 +13,12 @@ const socialLinks = [
 { 
     id:'twitter',
     icon:Twitter,
-    url:'https://x.com/pbrvitsofficial'
+    url:'https://x.com/pbrvitsofficial/'
 },
-
+{ 
+    id:'linkedin',
+    icon:linkedin,
+    url:'https://www.linkedin.com/company/pbrvits-official/'
+},
 ];
 export default socialLinks;
