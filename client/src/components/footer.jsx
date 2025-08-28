@@ -10,7 +10,7 @@ const Footer = () => {
       <FooterBody />
       <Separator  className=' '/>
       <div className=" flex w-full bg-foreground py-5 gap-2 flex-col items-center bg-black">
-        <p className="text-background font-thin">Created By Yasovardhan</p>
+        <p className="text-background font-thin">Created By UV Sohith</p>
         <p className="text-background font-thin">Copyright &copy; PBR VITS</p>
       </div>
     </section>

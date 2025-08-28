@@ -329,6 +329,22 @@ const RegisterPage = () => {
 
                   {step === 3 && (
                     <div className="space-y-7">
+                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                          <p className="text-sm text-blue-800 mb-2">
+                            <strong>Payment Information:</strong>
+                          </p>
+                          <p className="text-sm text-red-700 mb-2">
+                            Please complete your payment using the official SBI Collect Portal Here:
+                          </p>
+                          <a 
+                            href="https://www.onlinesbi.sbi/sbicollect/" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center text-sm text-blue-600 hover:text-blue-800 underline font-medium"
+                          >
+                            Pay Registration Fee →
+                          </a>
+                        </div>
                       <FormField
                         control={form.control}
                         name="duNumber"
