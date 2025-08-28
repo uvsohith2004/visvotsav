@@ -5,7 +5,7 @@ const homeData =  {
       lastDate: '2025-09-11',
       id:'college name',
       collegeName: 'PBR Visvodaya Institute of Technology and Science',
-      event: 'Visovtsav',
+      event: 'Visvotsav',
       eventYear:year,
       eventMonth:"SEP",
       eventDate: '14-15 ',

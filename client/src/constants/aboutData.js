@@ -1,6 +1,6 @@
 import collegeImage from "../assets/clg.jpg";
 const aboutData = {
-  title: "About Visovtsav",
+  title: "About Visvotsav",
   description:
     "Visvotsav is a National Level Technical symposium conducted by the PBR Visvodaya Institute of Technology and Science (Autonomous). In this event we conduct some Technical events for the students and finalize the winners. The winners will receive the respected cash prize, a certificate of excellence along with a momento In this Visvotsav everyone can participate without the branch differentiation",
   collegeName: "PBRVITS Autonomous",
