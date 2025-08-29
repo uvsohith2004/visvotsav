@@ -1,0 +1,59 @@
+.env
+credentials.json
+#  remove all node_modules
+node_modules/
+client/node_modules/
+server/node_modules/
+
+client/.env
+server/.env
+#  remove all build files
+client/build/
+server/build/
+#  remove all log files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+#  remove MacOS system files
+.DS_Store
+#  remove Windows system files
+Thumbs.db
+#  remove coverage directory
+coverage/
+#  remove IDE specific files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+#  remove test output
+test-output/
+#  remove temporary files
+tmp/
+temp/
+#  remove lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+#  remove build artifacts
+dist/
+out/
+#  remove environment variable files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+#  remove OS generated files
+*.bak
+*.tmp
+*.old
+*.orig
+#  remove other files
+*.cache
+*.pid
+*.seed
+*.pid.lock
+
