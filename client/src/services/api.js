@@ -1,6 +1,10 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:4000";
+const BASE_URL =
+  import.meta.env.MODE === "production"
+    ? import.meta.env.VITE_PRODUCTION_BACKEND_URL
+    : import.meta.env.VITE_DEVELOPMENT_BACKEND_URL;
+console.log("Base URL:", BASE_URL);
 const axiosInstance = axios.create({ baseURL: BASE_URL });
 
 export const postQuery = async (data) => {
