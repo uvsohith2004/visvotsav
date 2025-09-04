@@ -50,56 +50,56 @@ export const scheduleData = [
     },
     {
       id: 8,
-      title: "Elocution",
+      title: "Elocution ",
       date: "15th September 2025",
       time: "10:00 AM",
       venue: "Main Hall"
     },
     {
       id: 9,
-      title: "Picture Connect",
+      title: "Picture Connect ",
       date: "15th September 2025",
       time: "10:00 AM",
       venue: "Main Hall"
     },
     {
       id: 10,
-      title: "Singing",
+      title: "Singing ",
       date: "15th September 2025",
       time: "10:00 AM",
       venue: "Main Hall"
     },
     {
       id: 11,
-      title: "Dancing",
+      title: "Dancing ",
       date: "15th September 2025",
       time: "10:00 AM",
       venue: "Main Hall"
     },
     {
       id: 12,
-      title: "Anthyakshari",
+      title: "Anthyakshari ",
       date: "15th September 2025",
       time: "10:00 AM",
       venue: "Main Hall"
     },
     {
       id: 13,
-      title: "Dumb Charades",
+      title: "Dumb Charades ",
       date: "15th September 2025",
       time: "10:00 AM",
       venue: "Main Hall"
     },
     {
       id: 14,
-      title: "General Quiz",
+      title: "General Quiz ",
       date: "15th September 2025",
       time: "10:00 AM",
       venue: "Main Hall"
     },
     {
       id: 15,
-      title: "Fancy Dress",
+      title: "Fancy Dress ",
       date: "15th September 2025",
       time: "10:00 AM",
       venue: "Main Hall"
@@ -109,6 +109,6 @@ export const scheduleData = [
       title: "Treasure Hunt",
       date: "15th September 2025",
       time: "10:00 AM",
-      venue: "Main Hall"
+      venue:"Main Hall"
     },
   ];

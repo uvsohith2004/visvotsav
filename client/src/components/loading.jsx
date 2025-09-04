@@ -143,7 +143,7 @@ const LoadingScreen = () => {
         target="_blank"
         rel="noopener noreferrer"
       >
-        Built by UV.Sohith
+        Built by UV. Sohith
       </a> */}
     </div>
   );
