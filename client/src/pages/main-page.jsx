@@ -3,7 +3,9 @@ import { about, pricing, home, scheduleData, socialLinks } from "@/constants";
 import GoogleMaps from "@/components/google-maps";
 import backgroundVideo from "@/assets/background.mp4";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import posterImage from "@/assets/banner.jpg";
+// Poster download path served from Vite's public directory
+// Place your poster image at: client/public/poster.jpg
+const posterImagePath = "/poster.jpg";
 import ContactForm from "@/components/contact-form";
 import { Element, Link } from "react-scroll";
 import { AnimatePresence, motion, useAnimation } from "framer-motion";
@@ -189,8 +191,8 @@ const MainPage = () => {
                 Know More
               </Link>
               <a
-                href={posterImage}
-                download
+                href={posterImagePath}
+                download="visvotsav-2k25-poster.jpeg"
                 className="group relative bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 transform hover:scale-105"
               >
                 Download
