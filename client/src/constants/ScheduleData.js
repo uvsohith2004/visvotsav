@@ -44,8 +44,71 @@ export const scheduleData = [
     {
       id: 7,
       title: "Technical Quiz",
+      date: "14th September 2025",
+      time: "10:00 AM",
+      venue: "Main Hall"
+    },
+    {
+      id: 8,
+      title: "Elocution",
       date: "15th September 2025",
       time: "10:00 AM",
-      venue: "Sports Complex"
+      venue: "Main Hall"
+    },
+    {
+      id: 9,
+      title: "Picture Connect",
+      date: "15th September 2025",
+      time: "10:00 AM",
+      venue: "Main Hall"
+    },
+    {
+      id: 10,
+      title: "Singing",
+      date: "15th September 2025",
+      time: "10:00 AM",
+      venue: "Main Hall"
+    },
+    {
+      id: 11,
+      title: "Dancing",
+      date: "15th September 2025",
+      time: "10:00 AM",
+      venue: "Main Hall"
+    },
+    {
+      id: 12,
+      title: "Anthyakshari",
+      date: "15th September 2025",
+      time: "10:00 AM",
+      venue: "Main Hall"
+    },
+    {
+      id: 13,
+      title: "Dumb Charades",
+      date: "15th September 2025",
+      time: "10:00 AM",
+      venue: "Main Hall"
+    },
+    {
+      id: 14,
+      title: "General Quiz",
+      date: "15th September 2025",
+      time: "10:00 AM",
+      venue: "Main Hall"
+    },
+    {
+      id: 15,
+      title: "Fancy Dress",
+      date: "15th September 2025",
+      time: "10:00 AM",
+      venue: "Main Hall"
+    },
+    {
+      id: 16,
+      title: "Treasure Hunt",
+      date: "15th September 2025",
+      time: "10:00 AM",
+      venue: "Main Hall"
     },
   ];

@@ -137,14 +137,14 @@ const LoadingScreen = () => {
          {`${home.event} ${home.eventYear}`}
         </motion.h2>
       </div>
-      <a
+      {/* <a
         className="floating-badge"
         href="https://example.com/portfolio"
         target="_blank"
         rel="noopener noreferrer"
       >
         Built by UV.Sohith
-      </a>
+      </a> */}
     </div>
   );
 };
