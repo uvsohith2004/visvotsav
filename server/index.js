@@ -12,12 +12,25 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware setup
 app.use(express.json());
-app.use(
-  cors({
-    origin: [process.env.NODE_ENV==="production"?process.env.PRODUCTION_FRONTEND_URL:process.env.DEVELOPMENT_FRONTEND_URL],
-    credentials: true,
-  })
-);
+const allowedOrigins = [
+  "http://localhost:4000",
+  "https://visvotsav-teal.vercel.app",
+  "https://visvotsav.vercel.app",
+];
+
+const corsOptions = {
+
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+  
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+};
+app.use(cors(corsOptions));
 // Routes
 app.get("*", (req, res, next) => {
   const path = req.path;
