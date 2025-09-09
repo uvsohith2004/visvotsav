@@ -1,17 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
-import { about, pricing, home, scheduleData, socialLinks } from "@/constants";
+import { about, pricing, home, scheduleData } from "@/constants";
 import GoogleMaps from "@/components/google-maps";
 import backgroundVideo from "@/assets/background.mp4";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-// Poster download path served from Vite's public directory
-// Place your poster image at: client/public/poster.jpg
-const posterImagePath = "/poster.jpg";
+import posterImage from "@/assets/banner.jpeg";
 import ContactForm from "@/components/contact-form";
 import { Element, Link } from "react-scroll";
+import {Link as RouterLink} from "react-router-dom"
 import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
-import { Clock, Facebook, Instagram, MapPin, Twitter } from "lucide-react";
+import { Clock, Facebook, Instagram, Linkedin, MapPin, Twitter, Users, Phone, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 const EventCard = ({ event, index }) => {
   const controls = useAnimation();
@@ -38,25 +37,124 @@ const EventCard = ({ event, index }) => {
     },
   };
 
+  // Determine card background color based on category
+  const getBgGradient = (category) => {
+    switch (category) {
+      case 'technical':
+        return 'bg-gradient-to-r from-blue-500 to-purple-600';
+      case 'cultural':
+        return 'bg-gradient-to-r from-pink-500 to-rose-500';
+      default:
+        return 'bg-gradient-to-r from-gray-500 to-gray-600';
+    }
+  };
+
   return (
     <motion.div
       ref={ref}
       variants={cardVariants}
       initial="hidden"
       animate={controls}
-      className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-200"
+      className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-200 border border-gray-200"
     >
-      <div className="bg-gradient-to-r bg-primary px-4 py-2">
-        <h3 className="text-xl font-bold text-white">{event.title}</h3>
+      {/* Header with category indicator */}
+      <div className={`bg-primary px-4 py-3`}>
+        <div className="flex justify-between items-center">
+          <h3 className="text-xl font-bold text-white">{event.title}</h3>
+          <span className="px-3 py-1 bg-white bg-opacity-20 rounded-full text-sm font-medium text-white capitalize">
+            {event.category}
+          </span>
+        </div>
       </div>
-      <div className="p-4">
-        <p className="text-gray-600 font-bold text-lg">{event.date}</p>
-        <p className="text-gray-800 font-semibold mt-2">{event.time}</p>
-        <p className="text-gray-700 mt-1">{event.venue}</p>
+
+      {/* Event Details */}
+      <div className="p-4 space-y-3">
+        {/* Date and Time */}
+        <div className="flex items-center text-gray-700">
+          <Clock className="mr-2 h-4 w-4 text-blue-500" />
+          <div>
+            <p className="font-bold text-lg">{event.date}</p>
+            <p className="text-gray-600">{event.time}</p>
+          </div>
+        </div>
+
+        {/* Venue */}
+        <div className="flex items-center text-gray-700">
+          <MapPin className="mr-2 h-4 w-4 text-red-500" />
+          <p className="font-semibold">{event.venue}</p>
+        </div>
+
+        {/* Coordinators Section */}
+        {(event.coordinators?.faculty?.length > 0 || event.coordinators?.students?.length > 0) && (
+          <div className="mt-4 pt-3 border-t border-gray-200">
+            <div className="flex items-center mb-2">
+              <Users className="mr-2 h-4 w-4 text-green-500" />
+              <span className="font-semibold text-gray-700">Coordinators</span>
+            </div>
+
+            {/* Faculty Coordinators */}
+            {event.coordinators.faculty && event.coordinators.faculty.length > 0 && (
+              <div className="mb-2">
+                <p className="text-sm font-medium text-gray-600 mb-1">Faculty:</p>
+                <div className="space-y-1">
+                  {Array.isArray(event.coordinators.faculty) ? 
+                    event.coordinators.faculty.map((faculty, idx) => (
+                      <div key={idx} className="flex items-center text-sm text-gray-700">
+                        <User className="mr-1 h-3 w-3" />
+                        {typeof faculty === 'string' ? (
+                          <span>{faculty}</span>
+                        ) : (
+                          <div className="flex items-center space-x-2">
+                            <span>{faculty.name}</span>
+                            {faculty.mobile && (
+                              <div className="flex items-center text-blue-600">
+                                <Phone className="mr-1 h-3 w-3" />
+                                <span className="text-xs">{faculty.mobile}</span>
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    )) : (
+                      <div className="flex items-center text-sm text-gray-700">
+                        <User className="mr-1 h-3 w-3" />
+                        <span>{event.coordinators.faculty}</span>
+                      </div>
+                    )
+                  }
+                </div>
+              </div>
+            )}
+
+            {/* Student Coordinators */}
+            {event.coordinators.students && event.coordinators.students.length > 0 && (
+              <div>
+                <p className="text-sm font-medium text-gray-600 mb-1">Students:</p>
+                <div className="space-y-1">
+                  {event.coordinators.students.map((student, idx) => (
+                    <div key={idx} className="flex items-center justify-between text-sm text-gray-700">
+                      <div className="flex items-center">
+                        <User className="mr-1 h-3 w-3" />
+                        <span>{student.name}</span>
+                      </div>
+                      {student.mobile && (
+                        <div className="flex items-center text-blue-600">
+                          <Phone className="mr-1 h-3 w-3" />
+                          <span className="text-xs">{student.mobile}</span>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </motion.div>
   );
 };
+
 const PricingCard = ({ item, index }) => {
   const controls = useAnimation();
   const [ref, inView] = useInView({
@@ -121,12 +219,12 @@ const PricingCard = ({ item, index }) => {
             ))}
           </ul>
         </div>
-        <a
-          href="/register"
+        <RouterLink
+          to="/register"
           className="w-full bg-gradient-to-r from-purple-500 to-indigo-600 text-white font-bold py-3 px-4 rounded-full text-center hover:from-purple-600 hover:to-indigo-700 transition-all duration-300"
         >
           Register Now
-        </a>
+        </RouterLink>
       </div>
     </motion.div>
   );
@@ -191,8 +289,8 @@ const MainPage = () => {
                 Know More
               </Link>
               <a
-                href={posterImagePath}
-                download="visvotsav-2k25-poster.jpeg"
+                href={posterImage}
+                download
                 className="group relative bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 transform hover:scale-105"
               >
                 Download
@@ -217,21 +315,39 @@ const MainPage = () => {
             </div>
 
             <div className="flex justify-center items-center space-x-4">
-              <span>Follow Us:</span>
-              {socialLinks.map((link) => {
-                const IconComponent = link.icon;
-                return (
-                   <a
-                    key={link.id}
-                   href={link.url}
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   className="text-white hover:text-blue-200 transition-colors duration-300"
-                 >
-                    <IconComponent />
-                 </a>
-                );
-              })}
+              <span>Follow Us :</span>
+              <a
+                href="https://www.facebook.com/pbrvitsofficial/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-blue-200 transition-colors duration-300"
+              >
+                <Facebook size={24} />
+              </a>
+              <a
+                href="https://x.com/pbrvitsofficial/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-blue-200 transition-colors duration-300"
+              >
+                <Twitter size={24} />
+              </a>
+              <a
+                href="https://www.linkedin.com/company/pbrvits-official/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-blue-200 transition-colors duration-300"
+              >
+                <Linkedin size={24} />
+              </a>
+              <a
+                href="https://www.instagram.com/pbrvits_official/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-blue-200 transition-colors duration-300"
+              >
+                <Instagram size={24} />
+              </a>
             </div>
           </div>
         </section>
@@ -278,9 +394,11 @@ const MainPage = () => {
           className="bg-gray-100 py-12 px-4 sm:px-6 lg:px-8"
         >
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-4xl font-extrabold text-center text-gray-900 mb-12">
-              Schedule
+            <h2 className="text-4xl font-extrabold text-center text-gray-900 mb-3">
+              Schedule & Details
             </h2>
+            <h3 className="text-2xl text-center mb-1"><span className="font-bold text-red-900">14-09-2025</span> : Technical Events (State level competitions) </h3>
+            <h3 className="text-2xl text-center text-gray-900 mb-5"><span className="font-bold text-red-900">15-09-2025</span> : Culturals Events (Only For in-house Students)   </h3>
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               <AnimatePresence>
                 {scheduleData.slice(0, visibleScheduleEvents).map((event) => (

@@ -5,7 +5,7 @@ import { Outlet} from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Footer from '@/components/footer';
-import CountdownTimer from '@/components/timer';
+// import CountdownTimer from '@/components/timer';
 import { Toaster } from '@/components/ui/toaster';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -28,7 +28,7 @@ const MainLayout = () => {
         <Footer/>
       </footer>
    
-      <CountdownTimer/>
+      {/* <CountdownTimer/> */}
     </div>
   );
 };

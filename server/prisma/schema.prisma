@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client-js"
+}
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Registration {
+  id                 Int      @id @default(autoincrement())
+  name               String
+  phone              String
+  email              String   
+  college            String
+  eventType          String
+  event              String
+  branch             String
+  duNumber           String   @unique
+  participants       Int
+  participantDetails Json?
+  createdAt          DateTime @default(now())
+  pushedToSheets     Boolean  @default(false)
+}

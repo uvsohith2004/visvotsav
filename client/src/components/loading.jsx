@@ -86,27 +86,6 @@ const LoadingScreen = () => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black overflow-hidden">
-      <style>{`
-        @keyframes float {
-          0% { transform: translateY(0); }
-          50% { transform: translateY(-5px); }
-          100% { transform: translateY(0); }
-        }
-        .floating-badge {
-          position: fixed;
-          bottom: 20px;
-          left: 20px;
-          background: #ff0066;
-          color: #fff;
-          padding: 5px 10px;
-          border-radius: 5px;
-          animation: float 2s infinite ease-in-out;
-          cursor: pointer;
-          z-index: 9999;
-          text-decoration: none;
-          font-size: 16px;
-        }
-      `}</style>
       <ParticleField />
       <div className="text-center z-10">
         <motion.div
@@ -137,14 +116,6 @@ const LoadingScreen = () => {
          {`${home.event} ${home.eventYear}`}
         </motion.h2>
       </div>
-      {/* <a
-        className="floating-badge"
-        href="https://example.com/portfolio"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Built by UV. Sohith
-      </a> */}
     </div>
   );
 };

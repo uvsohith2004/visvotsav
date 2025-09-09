@@ -5,7 +5,7 @@ import socialLinks from "./socialLinks";
 import { scheduleData } from "./ScheduleData";
 import { data } from "./data";
 import { navbar } from "./navbarData";
-import { branches, events,projectTypeOptions,formSchema } from "./formData";
+import { branches, events,projectTypeOptions,formSchema,colleges } from "./formData";
 
 import {
   footerData as footer,
@@ -35,4 +35,5 @@ export {
   navbar,
   projectTypeOptions,
   coConveners,
+  colleges
 };

@@ -4,6 +4,7 @@ import {
   studentCoordinators,
   staffCoordinators,
   patron,
+  coPatrons,
   convenor,
   coConveners,
 } from "@/constants/footerData";
@@ -20,6 +21,7 @@ const FooterBody = () => {
             {footerData.firstTitle}
           </h2>
           <FooterSection title={footerData.firstSubTitle} items={patron} />
+          <FooterSection title={footerData.coPatronsSubTitle} items={coPatrons} />
           <FooterSection title={footerData.secondSubTitle} items={convenor} />
           <FooterSection title={footerData.thirdSubTitle} items={coConveners} />
           <FooterSection

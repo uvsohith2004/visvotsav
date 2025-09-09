@@ -1,102 +1,22 @@
 export const footerData = {
   firstTitle: "Contacts",
   secondTitle: "Have a Question?",
-  secondTitleMobileNumber:'+91 9885058098',
-  secondTitleEmail:'visvotsav2024@visvotsav.in',
+  secondTitleMobileNumber:'+91 9246428707',
+  secondTitleEmail:'visvotsav.pbrvits@visvodayata.ac.in',
   firstSubTitle: "Patrons",
   coPatronsSubTitle: "Co-Patrons",
   thirdTitle: "Loaction",
-  ThirdTitleAddress: "UdayaGiri Road,Kavali ,Nellore district,andhra pradesh",
+  ThirdTitleAddress: "Udayagiri Road, Kavali, Nellore district, Andhra Pradesh",
   secondSubTitle: "Convenors",
   thirdSubTitle: "Co-conveners",
   fourthSubTitle: "Student Coordinators",
   fifthSubTitle: "Staff Coordinators",
 };
 
-export const studentCoordinators = [
-  {
-    id: "1",
-    name: "Ms.V.Charchitha",
-    mobile: " 8341096201",
-    department: "CSE",
-  },
-  {
-    id: "2",
-    name: "Mr.S.Vinesh Gupta",
-    mobile: "9059887799",
-    department: "CSE",
-  },
-  {
-    id: "3",
-    name: "MR.M.Penchala Sai",
-    mobile: "9100721496",
-    department: "CSE-AI",
-  },
-  {
-    id: "4",
-    name: "Ms.M.Yamini",
-    mobile: "9090324347",
-    department: "CSE-AI",
-  },
-  {
-    id: "5",
-    name: "MR.SK.Naseer",
-    mobile: "939094028",
-    department: "AIML",
-  },
-  {
-    id: "6",
-    name: "Ms.N.Sowmika",
-    mobile: "9353978077",
-    department: "AIML",
-  },
-  {
-    id: "8",
-    name: "Mr.N.Manogna",
-    mobile: "9440509167",
-    department: "CSE-IOT",
-  },
-  {
-    id: "9",
-    name: "Mr.S.Rajasekhar Reddy",
-    mobile: "9440509167",
-    department: "CES-IOT",
-  },
-  {
-    id: "10",
-    name: "Mr.P.Suhel Khan",
-    mobile: "8121994836",
-    department: "ECE",
-  },
-  {
-    id: "11",
-    name: "Ms.V.Charishma",
-    mobile: "9030744340",
-    department: "ECE",
-  },
-  {
-    id: "12",
-    name: "Mr.A.Srijan",
-    mobile: "8106111903",
-    department: "EEE",
-  },
-  {
-    id: "13",
-    name: "Mr.A.Phanieswar",
-    mobile: "9346274012",
-    department: "CIVIL",
-  },
-  {
-    id: "14",
-    name: "Mr.M.Jafrulla Baig",
-    mobile: "9542944737",
-    department: "MBA",
-  },
-];
 export const patron = [
   {
     id: "1",
-    name: "Sri D.Vidhayadhar Kumar Reddy",
+    name: "Sri D.Vidyadhara Kumar Reddy",
     designation: "CHAIRMAN",
     college: "PBR VITS",
   },
@@ -105,13 +25,13 @@ export const patron = [
     id: "2",
     name: "Dr.D.Prathyusha Reddi",
     designation: "ACADEMIC DIRECTOR",
-    college: "PBR-VITS",
+    college: "PBR VITS",
   },
   {
     id: "3",
     name: "Dr.D.Likhith Reddy",
     designation: "ACADEMIC EXECUTIVE DIRECTOR",
-    college: "PBR-VITS",
+    college: "PBR VITS",
   },
 ];
 export const coPatrons = [
@@ -147,7 +67,7 @@ export const coConveners = [
   {
     id: "2",
     name: "Mr.N.C.Krishna Prasad",
-    designation: "ASST.PROF.ME",
+    designation: "ASST.PROF, ME, ",
     college: "PBR VITS",
   },
 ];
@@ -229,6 +149,87 @@ export const staffCoordinators = [
     id: "13",
     name: "Mr.P.V.A SUNIL KUMAR",
     mobile: "9908838590",
+    department: "MBA",
+  },
+];
+
+export const studentCoordinators = [
+  {
+    id: "1",
+    name: "Ms.V.Charchitha",
+    mobile: " 8341096201",
+    department: "CSE",
+  },
+  {
+    id: "2",
+    name: "Mr.S.Vinesh Gupta",
+    mobile: "9059887799",
+    department: "CSE",
+  },
+  {
+    id: "3",
+    name: "MR.M.Penchala Sai",
+    mobile: "9100721496",
+    department: "CSE-AI",
+  },
+  {
+    id: "4",
+    name: "Ms.M.Yamini",
+    mobile: "9090324347",
+    department: "CSE-AI",
+  },
+  {
+    id: "5",
+    name: "MR.SK.Naseer",
+    mobile: "939094028",
+    department: "AIML",
+  },
+  {
+    id: "6",
+    name: "Ms.N.Sowmika",
+    mobile: "9353978077",
+    department: "AIML",
+  },
+  {
+    id: "8",
+    name: "Mr.N.Manogna",
+    mobile: "9059524720",
+    department: "CSE-IOT",
+  },
+  {
+    id: "9",
+    name: "Mr.S.Rajasekhar Reddy",
+    mobile: "8247074976",
+    department: "CES-IOT",
+  },
+  {
+    id: "10",
+    name: "Mr.P.Suhel Khan",
+    mobile: "8121994836",
+    department: "ECE",
+  },
+  {
+    id: "11",
+    name: "Ms.V.Charishma",
+    mobile: "9030744340",
+    department: "ECE",
+  },
+  {
+    id: "12",
+    name: "Mr.A.Srijan",
+    mobile: "8106111903",
+    department: "EEE",
+  },
+  {
+    id: "13",
+    name: "Mr.A.Phanieswar",
+    mobile: "9346274012",
+    department: "CIVIL",
+  },
+  {
+    id: "14",
+    name: "Mr.M.Jafrulla Baig",
+    mobile: "9542944737",
     department: "MBA",
   },
 ];
