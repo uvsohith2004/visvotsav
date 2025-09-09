@@ -26,16 +26,7 @@ async function bootstrap() {
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
   });
-  app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'https://visvotsav-teal.vercel.app');
-    res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Accept');
-    if (req.method === 'OPTIONS') {
-      res.sendStatus(204); // or 200
-    } else {
-      next();
-    }
-  });
+  
   app.useGlobalPipes(new ValidationPipe());
   const config = new DocumentBuilder()
     .setTitle('Visvotsav Fest API')
