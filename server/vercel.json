@@ -1,18 +1,16 @@
 {
   "version": 2,
-  "functions": {
-    "dist/main.js": {
-      "maxDuration": 30
+  "builds": [
+    {
+      "src": "dist/main.js",
+      "use": "@vercel/node"
     }
-  },
-  "rewrites": [
+  ],
+  "routes": [
     {
-      "source": "/api/(.*)",
-      "destination": "/api"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/api"
+      "src": "/(.*)",
+      "dest": "dist/main.js",
+      "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
     }
   ]
 }
