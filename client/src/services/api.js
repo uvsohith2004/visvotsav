@@ -3,7 +3,6 @@ const BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:4000";
 
 const axiosInstance = axios.create({ baseURL: BASE_URL });
 
-
 export const postQuery = async (data) => {
   return await axiosInstance.post("/api/queries", data);
 };

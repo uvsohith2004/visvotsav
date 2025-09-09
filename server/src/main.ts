@@ -2,17 +2,19 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.interface';
 
 
 async function bootstrap() {
 const app = await NestFactory.create(AppModule);
-
-app.enableCors({
-  origin: ["https://visvotsav.pbrvits.ac.in","https://visvotsav-teal.vercel.app"],
+const corsOptions:CorsOptions = {
+  origin: "https://visvotsav-teal.vercel.app",
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS', 
   credentials: true,
+  preflightContinue: false,
   allowedHeaders: 'Content-Type, Authorization',
-});
+}
+app.enableCors(corsOptions);
 app.useGlobalPipes(new ValidationPipe());
 const config = new DocumentBuilder()
 .setTitle('Visvotsav Fest API')
