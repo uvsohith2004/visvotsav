@@ -6,6 +6,12 @@
       "use": "@vercel/node"
     }
   ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "dist/main.js"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
@@ -15,16 +21,16 @@
           "value": "https://visvotsav-teal.vercel.app"
         },
         {
-          "key": "Access-Control-Allow-Credentials",
-          "value": "true"
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, PUT, DELETE, PATCH, OPTIONS"
         },
         {
           "key": "Access-Control-Allow-Headers",
           "value": "Content-Type, Authorization, Accept"
         },
         {
-          "key": "Access-Control-Allow-Methods",
-          "value": "GET, POST, PUT, DELETE, PATCH, OPTIONS"
+          "key": "Access-Control-Allow-Credentials",
+          "value": "true"
         }
       ]
     }
