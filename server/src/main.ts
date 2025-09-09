@@ -2,15 +2,31 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import * as cors from 'cors';
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.use(
-    cors({
-      origin: 'https://visvotsav-teal.vercel.app',
-      credentials: true,
-    }),
-  );
+  app.getHttpAdapter().getInstance().set('trust proxy', 1);
+  app.enableCors({
+    origin: (origin, callback) => {
+      const allowedOrigins = [
+        'https://visvotsav-teal.vercel.app',
+        'http://localhost:3000',
+        'http://localhost:3001'
+      ];
+    
+      if (!origin) return callback(null, true);
+      
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
+  });
+
   app.useGlobalPipes(new ValidationPipe());
   const config = new DocumentBuilder()
     .setTitle('Visvotsav Fest API')
