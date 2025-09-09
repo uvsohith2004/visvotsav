@@ -11,6 +11,7 @@ app.enableCors({
   origin: ["http://localhost:5173", "https://visvotsav.pbrvits.ac.in","https://visvotsav-teal.vercel.app"],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS', 
   credentials: true,
+  allowedHeaders: 'Content-Type, Accept, Authorization',
 });
 app.useGlobalPipes(new ValidationPipe());
 const config = new DocumentBuilder()
