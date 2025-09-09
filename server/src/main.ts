@@ -2,11 +2,11 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import helmet from 'helmet';
+
 
 async function bootstrap() {
 const app = await NestFactory.create(AppModule);
-app.use(helmet())
+
 app.enableCors({
   origin: ["http://localhost:5173", "https://visvotsav.pbrvits.ac.in","https://visvotsav-teal.vercel.app"],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS', 
