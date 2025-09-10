@@ -14,16 +14,11 @@ async function bootstrap() {
   app.getHttpAdapter().getInstance().set('trust proxy', 1);
 
   app.enableCors({
-    origin: (origin, callback) => {
-      const allowedOrigins = [
-        'https://visvotsav-teal.vercel.app', // your frontend
-        'http://localhost:3000',
-        'http://localhost:3001',
-      ];
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.includes(origin)) callback(null, true);
-      else callback(new Error('Not allowed by CORS'));
-    },
+    origin: [
+      'https://visvotsav-teal.vercel.app',
+      'http://localhost:3000',
+      'http://localhost:3001',
+    ],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
@@ -46,13 +41,17 @@ async function bootstrap() {
 }
 
 export default async function handler(req, res) {
+
+  res.setHeader('Access-Control-Allow-Origin', 'https://visvotsav-teal.vercel.app');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,PATCH,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, Accept');
+
+  // Handle preflight request
   if (req.method === 'OPTIONS') {
-    res.setHeader('Access-Control-Allow-Origin', 'https://visvotsav-teal.vercel.app');
-    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,PATCH,OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, Accept');
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
     return res.status(200).end();
   }
+
   if (!cachedServer) {
     cachedServer = await bootstrap();
   }
