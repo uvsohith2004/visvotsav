@@ -4,7 +4,13 @@ import { ConfigService as NestConfigService } from '@nestjs/config';
 @Injectable()
 export class ConfigService {
   constructor(private nestConfigService: NestConfigService) {}
-
+  getCronSecret(): string { 
+    const cronSecret = this.nestConfigService.get<string>('CRON_SECRET');
+    if (!cronSecret) {
+      throw new Error('CRON_SECRET environment variable is not set!');
+    }
+    return cronSecret;
+  }
   getRecipients(): string{
     const recipients = this.nestConfigService.get<string>('RECIPIENTS');
     if (!recipients) {

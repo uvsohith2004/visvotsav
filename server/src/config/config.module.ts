@@ -8,6 +8,7 @@ import * as Joi from 'joi';
 @Module({
   imports: [  NestConfigModule.forRoot({
     validationSchema: Joi.object({
+      CRON_SECRET: Joi.string().required(),
       GMAIL_USER: Joi.string().required(),
       GMAIL_APP_PASSWORD: Joi.string().required(),
       SPREADSHEET_ID: Joi.string().required(),

@@ -1,5 +1,4 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { Cron, CronExpression } from '@nestjs/schedule';
 import { PrismaService } from '../prisma/prisma.service';
 import { GoogleSheetService } from '../google-sheet/google-sheet.service';
 
@@ -7,7 +6,6 @@ import { GoogleSheetService } from '../google-sheet/google-sheet.service';
 export class TasksService {
   private readonly logger = new Logger(TasksService.name);
   private isJobRunning = false;
-  // Define max participants based on your constants. The highest is 4 for 'Dancing'.
   private readonly maxAdditionalParticipants = 4;
 
   constructor(
@@ -15,76 +13,73 @@ export class TasksService {
     private readonly googleSheets: GoogleSheetService,
   ) {}
 
-  @Cron(CronExpression.EVERY_10_SECONDS)
-  async handleCron() {
+
+  async syncRegistrationsToSheet(): Promise<string> {
     if (this.isJobRunning) {
       this.logger.warn('Skipping cron run, job already running.');
-      return;
+      return 'Job skipped: another sync is already in progress.';
     }
     this.isJobRunning = true;
     this.logger.log('Running job: Syncing new registrations to Google Sheets...');
 
-    const newRegistrations = await this.prisma.registration.findMany({
-      where: { pushedToSheets: false },
-      take: 500,
-    });
-
-    if (newRegistrations.length === 0) {
-      this.logger.log('No new registrations to sync.');
-      this.isJobRunning = false;
-      return;
-    }
-
-    const registrationsByEvent = newRegistrations.reduce((acc, reg) => {
-      if (!acc[reg.event]) {
-        acc[reg.event] = [];
-      }
-      acc[reg.event].push(reg);
-      return acc;
-    }, {} as Record<string, typeof newRegistrations>);
-
-    let successCount = 0;
-    for (const eventName in registrationsByEvent) {
-      const registrations = registrationsByEvent[eventName];
-      const rowsToAppend = registrations.map(reg => {
-        const participantNames = (reg.participantDetails as any[]).map(p => p.name);
-
-        const paddedNames = [
-          ...participantNames,
-          ...Array(this.maxAdditionalParticipants - participantNames.length).fill(''),
-        ];
-        
-        return [
-          reg.name,
-          reg.phone,
-          reg.email,
-          reg.college,
-          reg.eventType,
-          reg.event,
-          reg.branch,
-          reg.duNumber,
-          reg.participants,
-          ...paddedNames, 
-        ];
+    try {
+      const newRegistrations = await this.prisma.registration.findMany({
+        where: { pushedToSheets: false },
+        take: 500,
       });
 
-      try {
-        await this.googleSheets.appendRows(eventName, rowsToAppend);
+      if (newRegistrations.length === 0) {
+        this.logger.log('No new registrations to sync.');
+        return 'No new registrations to sync.';
+      }
 
-        const successfulIds = registrations.map(r => r.id);
-        await this.prisma.registration.updateMany({
-          where: { id: { in: successfulIds } },
-          data: { pushedToSheets: true },
+      const registrationsByEvent = newRegistrations.reduce((acc, reg) => {
+        if (!acc[reg.event]) {
+          acc[reg.event] = [];
+        }
+        acc[reg.event].push(reg);
+        return acc;
+      }, {} as Record<string, typeof newRegistrations>);
+
+      let successCount = 0;
+      for (const eventName in registrationsByEvent) {
+        const registrations = registrationsByEvent[eventName];
+        const rowsToAppend = registrations.map(reg => {
+          const participantNames = (reg.participantDetails as any[]).map(p => p.name);
+          const paddedNames = [
+            ...participantNames,
+            ...Array(this.maxAdditionalParticipants - participantNames.length).fill(''),
+          ];
+          
+          return [
+            reg.name, reg.phone, reg.email, reg.college, reg.eventType,
+            reg.event, reg.branch, reg.duNumber, reg.participants,
+            ...paddedNames,
+          ];
         });
 
-        successCount += registrations.length;
-        this.logger.log(`Successfully synced ${registrations.length} registrations for event: ${eventName}`);
-      } catch (error) {
-        this.logger.error(`Failed to sync batch for event ${eventName}. Error: ${error.message}`);
-      }
-    }
+        try {
+          await this.googleSheets.appendRows(eventName, rowsToAppend);
 
-    this.logger.log(`Job finished. Synced ${successCount} of ${newRegistrations.length} registrations.`);
-    this.isJobRunning = false;
+          const successfulIds = registrations.map(r => r.id);
+          await this.prisma.registration.updateMany({
+            where: { id: { in: successfulIds } },
+            data: { pushedToSheets: true },
+          });
+
+          successCount += registrations.length;
+          this.logger.log(`Successfully synced ${registrations.length} registrations for event: ${eventName}`);
+        } catch (error) {
+          this.logger.error(`Failed to sync batch for event ${eventName}. Error: ${error.message}`);
+        }
+      }
+
+      const resultMessage = `Job finished. Synced ${successCount} of ${newRegistrations.length} registrations.`;
+      this.logger.log(resultMessage);
+      return resultMessage;
+    } finally {
+
+      this.isJobRunning = false;
+    }
   }
 }
