@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { EventQueriesDto } from './dto/event-queries.dto';
-import { EmailService } from 'src/email/email.service';
+import { EmailService } from '../email/email.service';
 
 @Injectable()
 export class QueriesService {
