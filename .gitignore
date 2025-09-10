@@ -38,6 +38,7 @@ temp/
 #  remove build artifacts
 dist/
 out/
+/dist
 #  remove environment variable files
 .env.local
 .env.development.local
