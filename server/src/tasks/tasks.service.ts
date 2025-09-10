@@ -49,8 +49,6 @@ export class TasksService {
       const rowsToAppend = registrations.map(reg => {
         const participantNames = (reg.participantDetails as any[]).map(p => p.name);
 
-        // Create a padded array for participant names
-        // This ensures every row has the same number of columns
         const paddedNames = [
           ...participantNames,
           ...Array(this.maxAdditionalParticipants - participantNames.length).fill(''),

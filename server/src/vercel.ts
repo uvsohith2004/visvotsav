@@ -12,19 +12,17 @@ async function bootstrap() {
 
   const app = await NestFactory.create(AppModule, new ExpressAdapter(expressApp));
   app.getHttpAdapter().getInstance().set('trust proxy', 1);
+
   app.enableCors({
     origin: (origin, callback) => {
       const allowedOrigins = [
-        'https://visvotsav-teal.vercel.app',
+        'https://visvotsav-teal.vercel.app', // your frontend
         'http://localhost:3000',
         'http://localhost:3001',
       ];
       if (!origin) return callback(null, true);
-      if (allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
+      if (allowedOrigins.includes(origin)) callback(null, true);
+      else callback(new Error('Not allowed by CORS'));
     },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
@@ -39,6 +37,7 @@ async function bootstrap() {
     .setVersion('1.0')
     .addTag('Registrations')
     .build();
+
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api-docs', app, document);
 
@@ -48,8 +47,7 @@ async function bootstrap() {
 
 export default async function handler(req, res) {
   if (!cachedServer) {
-    const app = await bootstrap();
-    cachedServer = app;
+    cachedServer = await bootstrap();
   }
   return cachedServer(req, res);
 }
