@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import {
   Sheet,
   SheetClose,
@@ -10,131 +10,171 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
-import { Link, useLocation } from "react-router-dom";
-import { Link as ScrollLink } from "react-scroll";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+
 import { cn } from "@/lib/utils";
-import { navbar } from "@/constants";
+import { navbar } from "@/constants/navbarData";
 // import Marquee from "./marquee";
 import { useAnimation, motion } from "framer-motion";
 const Navbar = () => {
-  // const [isMarqueeVisible, setIsMarqueeVisible] = useState(true);
   const [isTransparent, setIsTransparent] = useState(true);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const controls = useAnimation();
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      // setIsMarqueeVisible(scrollPosition < 10);
-      setIsTransparent(scrollPosition < 10);
+      const newIsTransparent = scrollPosition < 50;
+      setIsTransparent(newIsTransparent);
 
       controls.start({
-        // y: isMarqueeVisible ? 0 : -5,
-        backgroundColor: isTransparent ? "rgba(0, 0, 0, 0)" : "rgba(0, 0, 0, )",
-        transition: { duration: 0.3 },
+        backgroundColor: newIsTransparent
+          ? "rgba(0, 0, 0, 0)"
+          : "rgba(0, 0, 0, 0.9)",
+        backdropFilter: newIsTransparent ? "blur(0px)" : "blur(10px)",
+        transition: { duration: 0.1, ease: "easeInOut" },
       });
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // Call once to set initial state
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isTransparent, controls]);
+  }, [controls]);
 
   const handleSheetOpen = () => setIsSheetOpen(true);
   const handleSheetClose = () => setIsSheetOpen(false);
 
+  const handleNavigation = (sectionId) => {
+    if (location.pathname !== "/") {
+      // If not on home page, navigate to home first, then scroll
+      navigate("/");
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    } else {
+      // If on home page, just scroll
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+    handleSheetClose();
+  };
+
   return (
-    <>
-      {/* <Marquee isVisible={isMarqueeVisible} /> */}
-      <motion.nav
-        className={cn("w-full h-16 text-white backdrop-blur flex justify-between items-center px-3 py-4 fixed z-50")}
-        initial={{ y: 0, backgroundColor: "rgba(0, 0, 0, 0)" }}
-        animate={controls}
-      >
-        <div>
+    <motion.nav
+      className="w-full h-16 text-white flex justify-between items-center px-4 py-4 fixed z-50 transition-all duration-300"
+      initial={{ backgroundColor: "rgba(0, 0, 0, 0)" }}
+      animate={controls}
+    >
+      <div className="flex items-center">
+        <Link to="/" className="flex items-center">
           <h2
             className={cn(
-              "md:text-2xl text-white text-xl font-bold",
-              location.pathname === "/" ? "text-white" : "text-black",
-              !isTransparent&&"text-white"
+              "text-xl md:text-2xl font-bold transition-colors duration-300",
+              location.pathname === "/"
+                ? isTransparent
+                  ? "text-white"
+                  : "text-white"
+                : "text-black",
+              !isTransparent && "text-white"
             )}
           >
             {navbar.title}
-            <span className="max-sm:hidden"> {navbar.year}</span>
+            <span className="hidden sm:inline"> {navbar.year}</span>
           </h2>
-        </div>
-        <div className="flex gap-2">
-          <div>
-          <Link
-                      to={location.pathname === "/" ? "/register" : "/"}
-                      className={cn(buttonVariants({ variant: "default" }),'w-full rounded-full')}
-                    >
-                      {location.pathname === "/" ? "Register" : "Home"}
-                    </Link>
-          </div>
-          <div>
-            <Sheet
-              open={isSheetOpen}
-              onOpenChange={(open) => {
-                if (open) {
-                  handleSheetOpen();
-                } else {
-                  handleSheetClose();
-                }
-              }}
+        </Link>
+      </div>
+
+      <div className="flex items-center gap-3">
+        {/* Register/Home Button */}
+        <Link
+          to={location.pathname === "/" ? "/register" : "/"}
+          className={cn(
+            buttonVariants({ variant: "default" }),
+            "rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 hover:scale-105"
+          )}
+        >
+          {location.pathname === "/" ? "Register" : "Home"}
+        </Link>
+
+        {/* Mobile Menu */}
+        <Sheet
+          open={isSheetOpen}
+          onOpenChange={(open) => {
+            if (open) {
+              handleSheetOpen();
+            } else {
+              handleSheetClose();
+            }
+          }}
+        >
+          <SheetTrigger asChild>
+            <Button
+              variant="ghost"
+              size="sm"
+              className={cn(
+                "p-2 transition-colors duration-300",
+                location.pathname === "/"
+                  ? isTransparent
+                    ? "text-white hover:bg-white/10"
+                    : "text-white hover:bg-white/10"
+                  : "text-black hover:bg-black/10",
+                !isTransparent && "text-white"
+              )}
             >
-              <SheetTrigger asChild>
-                <Button
-                  variant={"ghost"}
+              <Menu className="h-5 w-5" />
+            </Button>
+          </SheetTrigger>
+
+          <SheetContent className="w-80 sm:w-96">
+            <SheetHeader className="border-b pb-4">
+              <div className="flex items-center justify-between">
+                <SheetTitle className="text-primary text-xl font-bold">
+                  Navigation Menu
+                </SheetTitle>
+           
+              </div>
+            </SheetHeader>
+
+            <div className="flex flex-col space-y-4 mt-6">
+              {/* Navigation Links */}
+              <div className="space-y-2">
+                {navbar.links.map((link, index) => (
+                  <button
+                    key={link.name}
+                    onClick={() => handleNavigation(link.path)}
+                    className="w-full text-left px-4 py-3 rounded-lg text-primary hover:bg-primary/10 transition-colors duration-200 font-medium"
+                  >
+                    {link.name}
+                  </button>
+                ))}
+              </div>
+
+              <Separator className="my-4" />
+
+              {/* Register/Home Button */}
+              <SheetClose asChild>
+                <Link
+                  to={location.pathname === "/" ? "/register" : "/"}
                   className={cn(
-                    location.pathname === "/register" &&
-                      "text-black hover:bg-black/10",!isTransparent&&"text-white hover:bg-white/10 hover:text-gray-200"
+                    buttonVariants({ variant: "default" }),
+                    "w-full py-3 rounded-lg font-medium"
                   )}
                 >
-                  <Menu className={cn("h-6 w-6")} />
-                </Button>
-              </SheetTrigger>
-              <SheetContent>
-                <SheetHeader>
-                  <SheetTitle className="text-primary">Menu</SheetTitle>
-                </SheetHeader>
-                <ul className="flex flex-col items-center mt-4 mb-1 p-2">
-                  {navbar.links.map((link, index) => (
-                    <React.Fragment key={link.name}>
-                      <SheetClose asChild>
-                        <li className="py-2">
-                          <ScrollLink
-                            to={link.path}
-                            className="text-primary cursor-pointer hover:text-primary/50"
-                            smooth={true}
-                            duration={500}
-                            onClick={handleSheetClose}
-                          >
-                            {link.name}
-                          </ScrollLink>
-                        </li>
-                      </SheetClose>
-                      {index < navbar.links.length - 1 && (
-                        <Separator className="my-1 bg-primary" />
-                      )}
-                    </React.Fragment>
-                  ))}
-                  <Separator className="my-1 bg-primary" />
-                  <SheetClose asChild>
-                    <Link
-                      to={location.pathname === "/" ? "/register" : "/"}
-                      className={cn(buttonVariants({ variant: "default" }),'w-full mt-10')}
-                    >
-                      {location.pathname === "/" ? "Register" : "Home"}
-                    </Link>
-                  </SheetClose>
-                </ul>
-              </SheetContent>
-            </Sheet>
-          </div>
-        </div>
-      </motion.nav>
-    </>
+                  {location.pathname === "/" ? "Register Now" : "Back to Home"}
+                </Link>
+              </SheetClose>
+            </div>
+          </SheetContent>
+        </Sheet>
+      </div>
+    </motion.nav>
   );
 };
 

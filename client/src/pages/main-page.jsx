@@ -449,6 +449,7 @@ const MainPage = () => {
       <Element name="pricing">
         <section
           ref={buttonRef}
+          id="pricing"
           className="bg-gradient-to-b from-violet-100 to-white py-20 px-4 sm:px-6 lg:px-8"
         >
           <div className="max-w-7xl mx-auto">
@@ -495,7 +496,9 @@ const MainPage = () => {
       </Element>
       {/* contact section */}
       <Element name="contact" className="pt-5 pb-10">
-        <section className="w-full p-3  flex-col flex  mt-5 items-center">
+        <section 
+          id="contact"
+        className="w-full p-3  flex-col flex  mt-5 items-center">
           <h2 className="text-foreground font-bold text-4xl mt-5 mb-10 cursor-pointer">
             Contact
           </h2>
