@@ -23,8 +23,5 @@
       "destination": "src/vercel.ts"
     }
   ],
-  "cron": {
-    "path": "/src/tasks/tasks.handler",
-    "schedule": "*/1 * * * *"
-  }
+
 }
