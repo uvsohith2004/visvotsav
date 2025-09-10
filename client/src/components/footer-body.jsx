@@ -158,7 +158,7 @@ const FooterBody = () => {
 const FooterSection = ({ title, items, isPrimary = false }) => {
   return (
     <div
-      className={`bg-neutral-900 rounded-xl p-3 sm:p-4 hover:shadow-md transition-all h-full`}
+      className={`bg-neutral-900 rounded-xl  p-3 sm:p-4 hover:shadow-md transition-all h-full`}
     >
       <h4 className="text-base sm:text-2xl font-semibold text-yellow-500 mb-2 sm:mb-3 pb-2 ">
         {title}
