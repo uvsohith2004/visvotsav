@@ -57,7 +57,7 @@ export class CreateRegistrationDto {
   branch: string;
 
   @ApiProperty({ description: 'Year of study', example: generateRandomDUNumber() })
-  @Matches(/^DU[A-Z][1-9][0-9]{6}$/, { message: 'Invalid DU Number format.' })
+  @Matches(/^DU[A-Z][0-9]{7}$/, { message: 'Invalid DU Number format.' })
   duNumber: string;
 
 
