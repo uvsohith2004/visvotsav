@@ -44,6 +44,9 @@ importers:
       cors:
         specifier: ^2.8.5
         version: 2.8.5
+      express:
+        specifier: ^5.1.0
+        version: 5.1.0
       googleapis:
         specifier: ^159.0.0
         version: 159.0.0
