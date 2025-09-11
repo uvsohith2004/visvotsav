@@ -1,9 +1,10 @@
+const year = new Date().getFullYear();
 export const scheduleData = [
   // Technical Events
   {
     id: 1,
     title: "Paper Presentation - CSE & Allied",
-    date: "14th September 2025",
+    date: `14th September ${year}`,
     time: "10:00 AM",
     venue: "C-119, Cotton Block",
     category: "technical",
@@ -18,7 +19,7 @@ export const scheduleData = [
   {
     id: 2,
     title: "Paper Presentation - ECE",
-    date: "14th September 2025",
+    date: `14th September ${year}`,
     time: "10:00 AM",
     venue: "D-102, 103, 104, Abdul Kalam Block",
     category: "technical",
@@ -33,7 +34,7 @@ export const scheduleData = [
   {
     id: 3,
     title: "Paper Presentation - EEE",
-    date: "14th September 2025",
+    date: `14th September ${year}`,
     time: "10:00 AM",
     venue: "B208 - ME Block",
     category: "technical",
@@ -49,7 +50,7 @@ export const scheduleData = [
   {
     id: 4,
     title: "Poster Presentation - CSE & Allied",
-    date: "14th September 2025",
+    date: `14th September ${year}`,
     time: "11:00 AM",
     venue: "C-103, Cotton Block",
     category: "technical",
@@ -64,7 +65,7 @@ export const scheduleData = [
   {
     id: 5,
     title: "Poster Presentation - ECE",
-    date: "14th September 2025",
+    date: `14th September ${year}`,
     time: "11:00 AM",
     venue: "R-210",
     category: "technical",
@@ -79,7 +80,7 @@ export const scheduleData = [
   {
     id: 6,
     title: "Poster Presentation - EEE",
-    date: "14th September 2025",
+    date: `14th September ${year}`,
     time: "11:00 AM",
     venue: "B103, ME Block",
     category: "technical",
@@ -95,7 +96,7 @@ export const scheduleData = [
   {
     id: 7,
     title: "Project Expo - CSE & Allied",
-    date: "14th September 2025",
+    date: `14th September ${year}`,
     time: "12:00 PM",
     venue: "A014 & 015, MRR Block",
     category: "technical",
@@ -110,7 +111,7 @@ export const scheduleData = [
   {
     id: 8,
     title: "Project Expo - ECE",
-    date: "14th September 2025",
+    date: `14th September ${year}`,
     time: "12:00 PM",
     venue: "Communications lab, Abdul Kalam Block",
     category: "technical",
@@ -125,7 +126,7 @@ export const scheduleData = [
   {
     id: 9,
     title: "Project Expo - EEE",
-    date: "14th September 2025",
+    date: `14th September ${year}`,
     time: "12:00 PM",
     venue: "B-103, ME Block",
     category: "technical",
@@ -141,7 +142,7 @@ export const scheduleData = [
   {
     id: 10,
     title: "Circuitrix (ECE & EEE)",
-    date: "14th September 2025",
+    date: `14th September ${year}`,
     time: "2:00 PM",
     venue: "EDC lab, Abdul Kalam Block",
     category: "technical",
@@ -156,7 +157,7 @@ export const scheduleData = [
   {
     id: 11,
     title: "Technical Quiz - CSE & Allied",
-    date: "14th September 2025",
+    date: `14th September ${year}`,
     time: "3:00 PM",
     venue: "A-204",
     category: "technical",
@@ -171,7 +172,7 @@ export const scheduleData = [
   {
     id: 12,
     title: "Technical Quiz - ECE",
-    date: "14th September 2025",
+    date: `14th September ${year}`,
     time: "3:00 PM",
     venue: "D-002, Abdul Kalam Block",
     category: "technical",
@@ -186,7 +187,7 @@ export const scheduleData = [
   {
     id: 13,
     title: "Technical Quiz - EEE",
-    date: "14th September 2025",
+    date: `14th September ${year}`,
     time: "3:00 PM",
     venue: "B109, ME Block",
     category: "technical",
@@ -202,7 +203,7 @@ export const scheduleData = [
   {
     id: 14,
     title: "Coding Contest",
-    date: "14th September 2025",
+    date: `14th September ${year}`,
     time: "4:00 PM",
     venue: "Lab-10, Abdul Kalam Block",
     category: "technical",
@@ -217,7 +218,7 @@ export const scheduleData = [
   {
     id: 15,
     title: "Web Designing",
-    date: "14th September 2025",
+    date: `14th September ${year}`,
     time: "4:00 PM",
     venue: "Lab-8, Abdul Kalam Block",
     category: "technical",
@@ -233,7 +234,7 @@ export const scheduleData = [
   {
     id: 16,
     title: "Singing (For in-house Students)",
-    date: "15th September 2025",
+    date: `15th September ${year}`,
     time: "1:30 PM",
     venue: "A-204",
     category: "cultural",
@@ -248,7 +249,7 @@ export const scheduleData = [
   {
     id: 17,
     title: "Dance (For in-house Students)",
-    date: "15th September 2025",
+    date: `15th September ${year}`,
     time: "10:00 AM",
     venue: "A-204",
     category: "cultural",
@@ -263,7 +264,7 @@ export const scheduleData = [
   {
     id: 18,
     title: "Antyakshari (For in-house Students)",
-    date: "15th September 2025",
+    date: `15th September ${year}`,
     time: "10:00 AM",
     venue: "D-003",
     category: "cultural",
@@ -278,7 +279,7 @@ export const scheduleData = [
   {
     id: 19,
     title: "Dumb Charades (For in-house Students)",
-    date: "15th September 2025",
+    date: `15th September ${year}`,
     time: "10:30 AM",
     venue: "C-101",
     category: "cultural",
@@ -293,7 +294,7 @@ export const scheduleData = [
   {
     id: 20,
     title: "Elocution (For in-house Students)",
-    date: "15th September 2025",
+    date: `15th September ${year}`,
     time: "2:30 PM",
     venue: "R-307",
     category: "cultural",
@@ -305,7 +306,7 @@ export const scheduleData = [
   {
     id: 21,
     title: "Drawing (For in-house Students)",
-    date: "15th September 2025",
+    date: `15th September ${year}`,
     time: "11:00 AM",
     venue: "R-108",
     category: "cultural",
@@ -320,7 +321,7 @@ export const scheduleData = [
   {
     id: 22,
     title: "Picture Connect (For in-house Students)",
-    date: "15th September 2025",
+    date: `15th September ${year}`,
     time: "2:00 PM",
     venue: "C-202",
     category: "cultural",
@@ -332,7 +333,7 @@ export const scheduleData = [
   {
     id: 23,
     title: "General Quiz (For in-house Students)",
-    date: "15th September 2025",
+    date: `15th September ${year}`,
     time: "2:00 PM",
     venue: "C-110",
     category: "cultural",
@@ -344,7 +345,7 @@ export const scheduleData = [
   {
     id: 24,
     title: "Fancy Dress (For in-house Students)",
-    date: "15th September 2025",
+    date: `15th September ${year}`,
     time: "10:00 AM",
     venue: "PBRVITS",
     category: "cultural",

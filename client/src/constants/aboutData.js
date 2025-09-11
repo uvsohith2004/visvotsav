@@ -45,13 +45,13 @@ const aboutData = {
       },
       {
         id: "5",
-        image: vicePrincipal1,
+        image: vicePrincipal2,
         name: "Dr.V.V.Sunil Kumar",
         designation: "Vice Principal"
       },
       {
         id: "6",
-        image: vicePrincipal2,
+        image: vicePrincipal1,
         name: "Dr. Dr.N.Srinadh Reddy",
         designation: "Vice Principal"
       }
