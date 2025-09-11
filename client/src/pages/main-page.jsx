@@ -12,6 +12,7 @@ import { useInView } from "react-intersection-observer";
 
 import { Clock, Facebook, Instagram, Linkedin, MapPin, Twitter, Users, Phone, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import AboutSection from "@/components/about-section";
 const EventCard = ({ event, index }) => {
   const controls = useAnimation();
   const [ref, inView] = useInView({
@@ -352,8 +353,8 @@ const MainPage = () => {
           </div>
         </section>
       </Element>
-      <Element name="about">
-        <section
+      <Element name="about" >
+        {/* <section
           id="about"
           className="flex bg-violet-900 w-full min-h-screen p-6 gap-2 shadow-lg"
         >
@@ -384,7 +385,8 @@ const MainPage = () => {
               />
             </div>
           </div>
-        </section>
+        </section> */}
+        <AboutSection />
       </Element>
       {/* schedule section */}
       <Element name="schedule" className="pt-3">
