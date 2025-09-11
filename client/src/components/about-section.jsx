@@ -26,14 +26,13 @@ const AboutSection = () => {
     visible: {
       opacity: 1,
       transition: {
-        duration: 0.8,
-        staggerChildren: 0.15,
+        staggerChildren: 0.2,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 40 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
@@ -55,8 +54,9 @@ const AboutSection = () => {
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
         {/* Title Section */}
         <motion.div
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.8 }}
           className="text-center mb-16 sm:mb-20"
         >
@@ -78,11 +78,11 @@ const AboutSection = () => {
           className="max-w-7xl mx-auto space-y-16"
         >
           {/* Content Cards Grid */}
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+          <motion.div variants={itemVariants} className="grid lg:grid-cols-2 gap-8 lg:gap-12">
             {/* Left Content */}
-            <div className="space-y-6 sm:space-y-8">
+            <div className="space-y-6 sm:space-y-8 flex flex-col">
               {/* Event Card */}
-              <motion.div variants={itemVariants} className="group">
+              <div className="group">
                 <div className="bg-white/5 backdrop-blur-lg rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-white/10 hover:bg-white/8 hover:border-white/20 transition-all duration-500 h-full">
                   <div className="flex items-center mb-6">
                     <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-r from-purple-500 to-violet-500 rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
@@ -96,10 +96,10 @@ const AboutSection = () => {
                     {about.description}
                   </p>
                 </div>
-              </motion.div>
+              </div>
 
               {/* College Card */}
-              <motion.div variants={itemVariants} className="group">
+              <div className="group">
                 <div className="bg-white/5 backdrop-blur-lg rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-white/10 hover:bg-white/8 hover:border-white/20 transition-all duration-500 h-full">
                   <div className="flex items-center mb-6">
                     <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
@@ -113,11 +113,11 @@ const AboutSection = () => {
                     {about.CollegeDescription}
                   </p>
                 </div>
-              </motion.div>
+              </div>
             </div>
 
             {/* Right Content - Campus Image */}
-            <motion.div variants={itemVariants} className="relative group overflow-hidden rounded-2xl sm:rounded-3xl">
+            <div className="relative group overflow-hidden rounded-2xl sm:rounded-3xl">
               <div className="  h-full min-h-[400px] lg:min-h-[500px]">
                 <img
                   src={about.image}
@@ -129,8 +129,8 @@ const AboutSection = () => {
                 
                 {/* Campus Info Overlay */}
                 <div className="absolute bottom-6 sm:bottom-8 left-6 sm:left-8 right-6 sm:right-8">
-                  <h4 className="text-white font-bold text-xl sm:text-2xl mb-2">Campus Excellence</h4>
-                  <p className="text-gray-200 text-sm sm:text-base">Where innovation meets tradition</p>
+                  <h4 className="text-white font-bold text-xl sm:text-2xl mb-2">{about.imageTitle}</h4>
+                  <p className="text-gray-200 text-sm sm:text-base">{about.imageSubtitle}</p>
                   
                   {/* Stats */}
                   <div className="flex flex-wrap gap-4 sm:gap-6 mt-4">
@@ -145,8 +145,8 @@ const AboutSection = () => {
                   </div>
                 </div>
               </div>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
 
           {/* College Officials Marquee Section */}
           <motion.div variants={itemVariants} className="w-full">

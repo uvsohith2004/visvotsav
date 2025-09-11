@@ -137,7 +137,7 @@ const FooterBody = () => {
                 <span className="text-red-500 text-base animate-pulse">❤️</span>
                 By
                 <span className="text-yellow-500 font-medium">
-                  UV.Sohith & Lohith
+                  UV.Sohith & T.Lohith
                 </span>
                 <span className="text-muted-foreground/80">
                   , IV ECE, Tesla
@@ -241,11 +241,11 @@ const ContactItem = ({ item }) => (
 const ContactInfo = ({ icon, info, href, label }) => (
   <a
     href={href}
-    className="flex items-center space-x-3 p-3 bg-neutral-800 rounded-lg border border-border hover:border-primary/30  transition-all group"
+    className="flex items-center space-x-3 p-3 bg-neutral-800 rounded-lg  hover:border-primary/30  transition-all group"
   >
     <div className="flex-shrink-0">{icon}</div>
     <div className="flex-1 min-w-0">
-      <div className="text-xs text-muted-foreground uppercase tracking-wide font-medium">
+      <div className="text-xs text-gray-400 uppercase tracking-wide font-medium">
         {label}
       </div>
       <div className="text-xs sm:text-sm text-white group-hover:text-yellow-500 truncate">

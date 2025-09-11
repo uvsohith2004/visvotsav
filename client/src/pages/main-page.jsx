@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { about, pricing, home, scheduleData } from "@/constants";
+import {  pricing, home, scheduleData } from "@/constants";
 import GoogleMaps from "@/components/google-maps";
 import backgroundVideo from "@/assets/background.mp4";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -19,7 +19,11 @@ const EventCard = ({ event, index }) => {
     threshold: 0.1,
     triggerOnce: true,
   });
-
+  // scroll to top when first render
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   useEffect(() => {
     if (inView) {
       controls.start("visible");

@@ -50,6 +50,7 @@ import { useFormSubmit } from "@/hooks/submit";
 import ConfettiPopup from "@/components/submit-popup";
 
 const RegisterPage = () => {
+
   const [step, setStep] = useState(1);
   const [eventType, setEventType] = useState("Technical");
   const mutation = useFormSubmit();
@@ -73,6 +74,11 @@ const RegisterPage = () => {
     },
     mode: "onChange",
   });
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(() => {
     if (mutation.isSuccess) {
       form.reset();
