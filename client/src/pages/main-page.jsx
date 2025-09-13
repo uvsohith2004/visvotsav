@@ -42,17 +42,8 @@ const EventCard = ({ event, index }) => {
     },
   };
 
-  // Determine card background color based on category
-  const getBgGradient = (category) => {
-    switch (category) {
-      case 'technical':
-        return 'bg-gradient-to-r from-blue-500 to-purple-600';
-      case 'cultural':
-        return 'bg-gradient-to-r from-pink-500 to-rose-500';
-      default:
-        return 'bg-gradient-to-r from-gray-500 to-gray-600';
-    }
-  };
+
+ 
 
   return (
     <motion.div
